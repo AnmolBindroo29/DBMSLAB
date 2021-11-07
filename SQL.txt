@@ -1,0 +1,191 @@
+ADMIN
+
+add-book.php
+
+$sql="INSERT INTO  tblbooks(BookName,CatId,AuthorId,ISBNNumber,BookPrice,Copies) VALUES(:bookname,:category,:author,:isbn,:price,:copies)";
+
+$sql = "SELECT * from  tblcategory where Status=:status";
+
+$sql = "SELECT * from  tblauthors ";
+
+add-category.php
+
+$sql = "SELECT * from tblcategory where CategoryName=:CategoryName";
+
+$sql="INSERT INTO  tblcategory(CategoryName,Status) VALUES(:category,:status)";
+
+add-publications.php
+
+$sql="INSERT INTO  tblauthors(AuthorName) VALUES(:author)";
+
+change-password.php
+
+$sql ="SELECT Password FROM admin where UserName=:username and Password=:password";
+
+Clientreport.php
+
+$sql = "SELECT tblstudents.FullName,tblbooks.BookName,tblbooks.ISBNNumber,tblbooks.id,tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id as rid from  tblissuedbookdetails join tblstudents on tblstudents.StudentId=tblissuedbookdetails.StudentId join tblbooks on tblbooks.id=tblissuedbookdetails.BookId order by tblissuedbookdetails.id desc";
+
+dashboard.php
+
+$sql ="SELECT id from tblbooks ";
+
+$sql1 ="SELECT id from tblissuedbookdetails ";
+
+$sql2 ="SELECT id from tblissuedbookdetails where ReturnStatus=:status";
+
+$sql3 ="SELECT STUDENTID from tblstudents ";
+
+$sql4 ="SELECT id from tblauthors ";
+
+$sql5 ="SELECT id from tblcategory ";
+
+edit-book.php
+
+$sql="update tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,ISBNNumber=:isbn,BookPrice=:price,Copies=:Copies where id=:bookid";
+
+$sql = "SELECT tblbooks.BookName,tblcategory.CategoryName,tblbooks.Copies,tblcategory.id as cid,tblauthors.AuthorName,tblauthors.id as athrid,tblbooks.ISBNNumber,tblbooks.BookPrice,tblbooks.id as bookid from  tblbooks join tblcategory on tblcategory.id=tblbooks.CatId join tblauthors on tblauthors.id=tblbooks.AuthorId where tblbooks.id=:bookid";
+
+$sql1 = "SELECT * from  tblcategory where Status=:status";
+
+$sql2 = "SELECT * from  tblauthors ";
+
+edit-category.php
+
+$sql="update  tblcategory set CategoryName=:category,Status=:status where id=:catid";
+
+$sql="SELECT * from tblcategory where id=:catid";
+
+edit-publication.php
+
+$sql="update  tblauthors set AuthorName=:author where id=:athrid";
+
+$sql = "SELECT * from  tblauthors where id=:athrid";
+
+get_book.php
+
+$sql ="SELECT BookName FROM tblbooks WHERE id=:bookid";
+
+get-student.php
+
+$sql ="SELECT FullName,Status FROM tblstudents WHERE StudentId=:studentid";
+
+index.php
+
+$sql ="SELECT UserName,Password FROM admin WHERE UserName=:username and Password=:password";
+
+issue-book.php
+
+$sql="INSERT INTO  tblissuedbookdetails(StudentID,BookId) VALUES(:studentid,:bookid)";
+
+$sql="update tblbooks set IssuedCopies=IssuedCopies+1 where id=:bookid";
+
+issue-book2.php
+
+$sql="INSERT INTO  tblissuedbookdetails(StudentID,BookId) VALUES(:studentid,:bookid)";
+
+$sql="DELETE FROM tblrequestedbookdetails WHERE StudentID=:studentid and BookID=:bookid";
+
+$sql="update tblbooks set IssuedCopies=IssuedCopies+1 where id=:bookid";
+
+manage-books.php
+
+$sql = "delete from tblbooks  WHERE id=:id";
+
+$sql = "SELECT tblbooks.BookName,tblbooks.id,tblbooks.Copies,tblbooks.IssuedCopies,tblcategory.CategoryName,tblauthors.AuthorName,tblbooks.ISBNNumber,tblbooks.BookPrice,tblbooks.id as bookid from  tblbooks join tblcategory on tblcategory.id=tblbooks.CatId join tblauthors on tblauthors.id=tblbooks.AuthorId";
+
+manage-categories.php
+
+$sql = "delete from tblcategory  WHERE id=:id";
+
+$sql = "SELECT * from  tblcategory";
+
+manage-issued-books.php
+
+$sql = "SELECT tblstudents.FullName,tblbooks.BookName,tblbooks.ISBNNumber,tblbooks.id,tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id as rid from  tblissuedbookdetails join tblstudents on tblstudents.StudentId=tblissuedbookdetails.StudentId join tblbooks on tblbooks.id=tblissuedbookdetails.BookId order by tblissuedbookdetails.id desc";
+
+manage-publications.php
+
+$sql = "delete from tblauthors  WHERE id=:id";
+
+$sql = "SELECT * from  tblauthors";
+
+manage-requested-books.php
+
+$sql = "SELECT tblrequestedbookdetails.StudentID,tblrequestedbookdetails.BookID, tblcategory.CategoryName, tblauthors.AuthorName,tblbooks.ISBNNumber,tblbooks.BookPrice from tblrequestedbookdetails join tblbooks on tblrequestedbookdetails.BookID=tblbooks.id join tblcategory on tblbooks.CatId=tblcategory.id join tblauthors on tblbooks.AuthorId=tblauthors.id";
+
+reg-students.php
+
+$sql = "update tblstudents set Status=:status  WHERE studentid=:id";
+
+$sql = "update tblstudents set Status=:status  WHERE studentid=:id";
+
+$sql = "SELECT * from tblstudents";
+
+set-fine.php
+
+$sql ="SELECT fine from tblfine";
+
+$sql="insert into tblfine values(:fine)";
+
+$sql="update tblfine set fine=:fine where 1";
+
+update-issue-bookdetails.php
+
+$sql="update tblissuedbookdetails set fine=:fine,ReturnStatus=:rstatus where id=:rid";
+
+$sql="update tblbooks set IssuedCopies=IssuedCopies-1 where ISBNNumber=:ISBNNumber";
+
+$sql = "SELECT tblstudents.FullName,tblbooks.BookName,tblbooks.id,tblbooks.ISBNNumber,tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id as rid,tblissuedbookdetails.fine,tblissuedbookdetails.ReturnStatus from  tblissuedbookdetails join tblstudents on tblstudents.StudentId=tblissuedbookdetails.StudentId join tblbooks on tblbooks.id=tblissuedbookdetails.BookId where tblissuedbookdetails.id=:rid";
+
+Client
+
+admin-login.php
+
+$sql ="SELECT UserName,Password FROM admin WHERE UserName=:username and Password=:password";
+
+change-password.php
+
+$sql ="SELECT Password FROM tblstudents WHERE EmailId=:email and Password=:password";
+
+dashboard.php
+
+$sql1 ="SELECT id from tblissuedbookdetails where StudentID=:sid";
+
+$sql2 ="SELECT id from tblissuedbookdetails where StudentID=:sid and ReturnStatus=:rsts";
+
+index.php
+
+$sql ="SELECT EmailId,Password,StudentId,Status FROM tblstudents WHERE EmailId=:email and Password=:password";
+
+issued-books.php
+
+$sql="SELECT tblbooks.BookName,tblbooks.ISBNNumber,tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id as rid,tblissuedbookdetails.fine from  tblissuedbookdetails join tblstudents on tblstudents.StudentId=tblissuedbookdetails.StudentId join tblbooks on tblbooks.id=tblissuedbookdetails.BookId where tblstudents.StudentId=:sid order by tblissuedbookdetails.id desc";
+
+my-profile.php
+
+$sql="update tblstudents set FullName=:fname,MobileNumber=:mobileno where StudentId=:sid";
+
+$sql="SELECT StudentId,FullName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  tblstudents  where StudentId=:sid ";
+
+request-a-book.php
+
+$sql = "SELECT tblbooks.BookName,tblbooks.Copies,tblbooks.IssuedCopies,tblcategory.CategoryName,tblauthors.AuthorName,tblbooks.ISBNNumber,tblbooks.BookPrice,tblbooks.id from  tblbooks join tblcategory on tblcategory.id=tblbooks.CatId join tblauthors on tblauthors.id=tblbooks.AuthorId";
+
+signup.php
+
+$sql="INSERT INTO  tblstudents(FullName,MobileNumber,EmailId,Password,Status) VALUES(:fname,:mobileno,:email,:password,:status)";
+
+temp.php
+
+$sql = "SELECT * from tblrequestedbookdetails where StudentID=:StudentID and BookID=:BookID";
+
+$sql = "SELECT * from tblrequestedbookdetails where StudentID=:StudentID";
+
+$sql="INSERT INTO tblrequestedbookdetails(StudentID,BookID) VALUES(:StudentID,:BookID)";
+
+user-forgot-password.php
+
+$sql ="SELECT EmailId FROM tblstudents WHERE EmailId=:email and MobileNumber=:mobile";
+
+
